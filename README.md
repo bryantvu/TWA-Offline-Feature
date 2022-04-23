@@ -1,54 +1,37 @@
-﻿# TWA IAP Demo
+﻿# TWA Offline Mode
 ## Table of Contents
 - [Introduction](#introduction)
-- [Setup](#setup)
 - [Demo Flow](#demo-flow)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
-- [Questions](#questions)
 
 ## Introduction
 
-The purpose of this Android project is to demonstrate that it is possible to integrate an In-App Purchase solution in the native layer together with the web content of a Trusted Web Activity.
+The purpose of this Android project is to provide an example of how a TWA app can to redirect to a placeholder activity when the device is not connected to the internet on app start up.
 
-This is made by possible by using App Linking to redirect from the web content to the native layer.
-
-- [Huawei IAP](https://developer.huawei.com/consumer/en/hms/huawei-iap/)
-- [Project Base - Huawei IAP Demo](https://github.com/HMS-Core/hms-iap-clientdemo-android-studio)
-- [Huawei App Linking](https://developer.huawei.com/consumer/en/agconnect/App-linking)
-- [Trusted Web Activities (Android Browser Helper)](https://github.com/GoogleChrome/android-browser-helper)
-
-## Setup
-
-### Huawei Developer Account
-A Huawei Developer Account is needed to access and configure Huawei IAP. You will need to create an account if you don't already have one. Please refer to this [guide](https://developer.huawei.com/consumer/en/doc/help/registerandlogin-0000001052613847).
-
-### AppGallery Configuration
-1.  Create an app in AppGallery Connect and configure the app information. For details, please refer to  [Configuring App Information in AppGallery Connect](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/config-agc-0000001050033072?ha_source=hms1).
-
-2.  Create and configure your products in AppGallery Connect. For details, please refer to  [Configuring Your Products](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/config-product-0000001050033076?ha_source=hms1).
-3.  Download the  **agconnect-services.json**  file of your app from AppGallery Connect, and add the file to the app-level directory of the demo.
-4. Add the signing certificate and add configurations to the app-level  **build.gradle**  file.
-5. Change the package name of the Android project to your desired app package name.
-6. Replace  **PUBLIC_KEY**  in the  **CipherUtil**  class with the public key of your app. For details about how to obtain the public key, please refer to  [Querying IAP Information](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/query-payment-info-0000001050166299?ha_source=hms1).
-7. Replace the products in this demo with your products.
+The network connectivity is queried using the Android [ConnectivityManger](https://developer.android.com/reference/android/net/ConnectivityManager). The user can manually check the network connectivity and attempt to reload the TWA using a button on the [OfflineActivity](https://github.com/bryantvu/TWA-Offline-Mode/blob/master/app/src/main/java/com/pictroom/android/OfflineActivity.java). Additionally, the app will automatically check by itself  based on the activity lifecycle if the user  navigates out and back.
 
 ## Demo Flow
-1. MainActivity opens loads demo website via TWA.
-2. Purchase button on demo website is a Huawei App Link which redirects to ConsumptionActivity from browser.
-3. ConsumptionActivity automatically loads Huawei IAP.
-4. IAP result redirects back to demo website via TWA for IAP success or fail.
+Please use 'TwaOfflineFeature.apk' if you just want to test the demo out. Note that the TWA is launched using the Huawei Browser which does not support hiding the navigation bar at the top.
 
-https://user-images.githubusercontent.com/40374800/159623963-25dbd52c-abeb-4283-b809-de3298599c53.mp4
+### Lifecycle Reconnect
+1. Airplane mode is enabled to simulate network disconnect.
+2. App seamlessly redirects from MainActivity to OfflineActivity.
+3. Airplane mode is disabled and network is reconnected.
+4. Navigate to homescreen and back into app.
+5. Placeholder splash screen appears before finally loading into TWA.
+
+
+### Reconnect Button
+
+1. Airplane mode is enabled to simulate network disconnect.
+2. App seamlessly redirects from MainActivity to OfflineActivity.
+3. Airplane mode is disabled and network is reconnected.
+4. "Recheck Connection" button is clicked.
+5. Placeholder splash screen appears before finally loading into TWA.
 
 ## License
 This Android sample code is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Acknowledgements
-The code in this project has been modified from [Huawei IAP Demo](https://github.com/HMS-Core/hms-iap-clientdemo-android-studio) and [Android Browser Helper](https://github.com/GoogleChrome/android-browser-helper). Their contributions are greatly appreciated.
-
-## Questions
-If you have a questions - [Stack Overflow](https://stackoverflow.com/questions/tagged/huawei-mobile-services) is the best place for any programming inquiries. Be sure to include the tag `huawei-mobile-services`.
-
-
-
+The code in this project is built on the foundation provided by [Trusted Web Activities (Android Browser Helper)](https://github.com/GoogleChrome/android-browser-helper). Their work in making this possible is greatly appreciated.
