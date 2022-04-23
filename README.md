@@ -21,6 +21,7 @@ Please use 'TwaOfflineFeature.apk' if you just want to test the demo out. Note t
 4. Navigate to homescreen and back into app.
 5. Placeholder splash screen appears before finally loading into TWA.
 
+https://user-images.githubusercontent.com/40374800/164838001-357b2f96-4ed0-4eb2-94fe-593b83700244.mp4
 
 ### Reconnect Button
 
@@ -29,6 +30,8 @@ Please use 'TwaOfflineFeature.apk' if you just want to test the demo out. Note t
 3. Airplane mode is disabled and network is reconnected.
 4. "Recheck Connection" button is clicked.
 5. Placeholder splash screen appears before finally loading into TWA.
+
+https://user-images.githubusercontent.com/40374800/164838009-bdbc7d85-c05e-4863-a382-e47589d2d49c.mp4
 
 ## License
 This Android sample code is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
